@@ -15,77 +15,102 @@
     --win-radius: 14px;
     --max-width:1100px;
   }
-  html,body{height:100%;margin:0;font-family:"Segoe UI", Roboto, system-ui, -apple-system, "Helvetica Neue", Arial; background:linear-gradient(180deg,#eef4ff 0%,var(--bg) 100%); color:#111;}
-  .container{max-width:var(--max-width);margin:28px auto;padding:22px;}
-  .card{background:var(--card);border-radius:var(--win-radius);box-shadow:var(--win-shadow);padding:18px;}
-  .header{display:flex;align-items:center;gap:12px;}
-  .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#5ec0ff);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;box-shadow:0 6px 18px rgba(10,132,255,0.18);}
-  h1{margin:0;font-size:18px;}
-  p.lead{color:var(--muted);margin:6px 0 14px 0;}
-  .modes{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;}
-  .mode{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(10,132,255,0.06), rgba(10,132,255,0.02));min-width:140px;text-align:center;cursor:pointer;border:1px solid rgba(10,132,255,0.06);}
-  .mode.secondary{background:linear-gradient(180deg, rgba(16,185,129,0.06), rgba(16,185,129,0.02));border:1px solid rgba(16,185,129,0.06);}
-  .mode h3{margin:0 0 6px 0;}
-  .small{font-size:13px;color:var(--muted)}
-  .board{margin-top:18px;}
-  .controls{display:flex;gap:12px;align-items:center;margin-top:12px;flex-wrap:wrap;}
-  button.btn{background:var(--accent);color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:600;box-shadow:0 6px 14px rgba(10,132,255,0.12);}
-  button.ghost{background:transparent;border:1px solid rgba(0,0,0,0.06);padding:8px 12px;color:var(--muted);}
-  .table-wrap{overflow:auto;margin-top:14px;border-radius:10px;border:1px solid rgba(0,0,0,0.04);padding:12px;background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,250,0.6));}
-  table{border-collapse:collapse;width:100%;min-width:600px;}
-  th,td{padding:8px 10px;border-bottom:1px dashed rgba(0,0,0,0.04);vertical-align:middle;text-align:center;}
-  th.namecol, td.namecol{min-width:160px;text-align:left;}
-  input.score{width:80px;padding:6px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);text-align:center;font-weight:600;}
-  input.name{width:100%;padding:6px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);}
-  .total-badge{font-size:13px;color:var(--muted);margin-left:8px}
-  .status{margin-top:10px;font-size:14px;color:var(--muted)}
-  .row-actions{display:flex;gap:8px;align-items:center;justify-content:center;}
-  @media (max-width:700px){
-    .container{padding:12px}
-    table{min-width:500px}
-    .logo{width:44px;height:44px;font-size:16px}
+  html,body{
+    height:100%;
+    margin:0;
+    font-family:"Segoe UI", Roboto, system-ui, -apple-system, "Helvetica Neue", Arial;
+    background:linear-gradient(180deg,#eef4ff 0%,var(--bg) 100%);
+    color:#111;
   }
-  /* coloring */
-  .best{background:linear-gradient(90deg,#e6ffef, #d9f8e8);border-radius:8px}
-  .worst{background:linear-gradient(90deg,#fff0f0,#ffecec);border-radius:8px}
-  /* modal */
-  .modal-back{position:fixed;inset:0;background:rgba(8,12,20,0.35);display:flex;align-items:center;justify-content:center;z-index:60}
-  .modal{background:var(--card);padding:18px;border-radius:12px;min-width:320px;box-shadow:0 12px 40px rgba(0,0,0,0.2)}
-  .opt-row{display:flex;gap:10px;align-items:center}
-  .muted{color:var(--muted);font-size:13px}
-  .topbar{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-top:12px}
-  .smallbtn{padding:6px 8px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);background:transparent;cursor:pointer}
-  .info{font-size:13px;color:var(--muted)}
-  .hint{font-size:12px;color:#8b8f98;margin-top:6px}
-</style>
-</head>
-<body>
-<div class="container">
-  <div class="card">
-    <div class="header">
-      <div class="logo">S</div>
-      <div>
-        <h1>UNO & OKEY Skorer — Windows 11 Modu</h1>
-        <p class="lead">Hızlı puan takibi. UNO için en yüksek kazanır (500 hedefi). Okey için eksi kuralları ve 11 el hazır.</p>
-      </div>
-    </div>
-
-    <div class="modes" id="startModes">
-      <div class="mode" id="unoBtn">
-        <h3>UNO</h3>
-        <div class="small">Oyuncu sayısını seçip başlayın</div>
-      </div>
-      <div class="mode secondary" id="okeyBtn">
-        <h3>OKEY</h3>
-        <div class="small">Eşli veya Tek moduyla başla</div>
-      </div>
-    </div>
-
-    <div id="appArea" style="display:none" class="board"></div>
-    <div id="modalRoot"></div>
-  </div>
-</div>
-
+  .container{
+    max-width:var(--max-width);
+    margin:28px auto;
+    padding:22px;
+  }
+  .card{
+    background:var(--card);
+    border-radius:var(--win-radius);
+    box-shadow:var(--win-shadow);
+    padding:18px;
+  }
+  .header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .logo{
+    width:56px;
+    height:56px;
+    border-radius:10px;
+    background:linear-gradient(135deg,var(--accent),#5ec0ff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-weight:700;
+    font-size:18px;
+    box-shadow:0 6px 18px rgba(10,132,255,0.18);
+  }
+  h1{
+    margin:0;
+    font-size:18px;
+  }
+  p.lead{
+    color:var(--muted);
+    margin:6px 0 14px 0;
+  }
+  .modes{
+    display:flex;
+    gap:12px;
+    margin-top:14px;
+    flex-wrap:wrap;
+  }
+  .mode{
+    padding:18px;
+    border-radius:12px;
+    background:linear-gradient(180deg, rgba(10,132,255,0.06), rgba(10,132,255,0.02));
+    min-width:140px;
+    text-align:center;
+    cursor:pointer;
+    border:1px solid rgba(10,132,255,0.06);
+  }
+  .mode.secondary{
+    background:linear-gradient(180deg, rgba(16,185,129,0.06), rgba(16,185,129,0.02));
+    border:1px solid rgba(16,185,129,0.06);
+  }
+  .mode h3{
+    margin:0 0 6px 0;
+  }
+  .small{
+    font-size:13px;
+    color:var(--muted)
+  }
+  .board{
+    margin-top:18px;
+  }
+  .controls{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    margin-top:12px;
+    flex-wrap:wrap;
+  }
+  button.btn{
+    background:var(--accent);
+    color:#fff;
+    border:none;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+    box-shadow:0 6px 14px rgba(10,132,255,0.12);
+  }
+  button.ghost{
+    background:transparent;
+    border:1px solid rgba(0,0,0,0.06);
+    padding:8px 12px;
+    color:var(--muted);
+  }
 <script>
 (function(){
   // Utilities
@@ -105,31 +130,24 @@
   const appArea = el('#appArea');
   const modalRoot = el('#modalRoot');
 
-  // Persistence helpers
   const saveState = (key, obj) => localStorage.setItem('skorer:'+key, JSON.stringify(obj));
   const loadState = (key) => {
-    const v = localStorage.getItem('skorer:'+key); if(!v) return null;
+    const v = localStorage.getItem('skorer:'+key); 
+    if(!v) return null;
     try{return JSON.parse(v)}catch(e){return null;}
   };
 
-  // Recalc + rendering helpers
   function parseScoreInput(raw){
     if(raw === null || raw === undefined) return 0;
     raw = String(raw).trim();
     if(raw === '') return 0;
-    // If user enters just "-" treat as -100
     if(raw === '-') return -100;
-    // If startsWith '-' and rest numeric -> parse that negative number
     if(/^-\d+$/.test(raw)) return parseInt(raw,10);
-    // If numeric positive
     if(/^\d+$/.test(raw)) return parseInt(raw,10);
-    // Allow +100 etc
     if(/^[+-]?\d+$/.test(raw)) return parseInt(raw,10);
-    // fallback 0
     return 0;
   }
 
-  // Common UI builder
   function clearModal(){ modalRoot.innerHTML=''; }
   function showModal(contentEl){
     clearModal();
@@ -142,9 +160,12 @@
     return {back,m};
   }
 
-  // UNO FLOW
+  /*
+    --------------------
+      UNO BAŞLANGICI
+    --------------------
+  */
   el('#unoBtn').addEventListener('click', ()=>{
-    // ask player count (max 10)
     const content = create('div',{},[
       create('h3',{html:'UNO — Oyuncu Sayısı'}),
       create('p',{class:'muted',html:'1 ile 10 arasında bir sayı girin (max 10).'}),
@@ -169,8 +190,8 @@
 
     const topbar = create('div',{class:'topbar'},[
       create('div',{},[
-        create('strong',{html:'UNO'},[]),
-        create('div',{class:'hint',html:'Üst satıra isimleri yazın. Alt satırlara her elin puanlarını girin. "-" tek başına = -100.'})
+        create('strong',{html:'UNO'}),
+        create('div',{class:'hint',html:'Her el için puan girin. "-" tek başına = -100.'})
       ]),
       create('div',{},[
         create('button',{class:'ghost smallbtn',onClick: ()=> { startArea.style.display='flex'; appArea.style.display='none'; }},['Geri']),
@@ -181,127 +202,100 @@
 
     const controls = create('div',{class:'controls'},[
       create('button',{class:'btn',onClick: ()=> addRow()},['Satır Ekle']),
-      create('button',{class:'ghost',onClick: ()=> saveNow()},['Kaydet (local)']),
-      create('div',{class:'info',html:'Hedef: 500. Hedefe ulaşan oyuncu kazanır.'})
+      create('button',{class:'ghost',onClick: ()=> saveNow()},['Kaydet']),
+      create('div',{class:'info',html:'Hedef: 500 puan'})
     ]);
     appArea.appendChild(controls);
 
     const tableWrap = create('div',{class:'table-wrap'});
     const table = create('table',{id:'unoTable'});
+    const thead = create('thead');
+    const tbody = create('tbody',{id:'unoBody'});
+
+    const headerRow = create('tr');
+    headerRow.appendChild(create('th',{class:'namecol',html:'Oyuncular'}));
+
+    const nameInputs = [];
+
+    for(let i=0;i<playerCount;i++){
+      const th = create('th');
+      const input = create('input',{class:'name',value:(saved?.names?.[i] ?? `Oyuncu ${i+1}`)});
+      const total = create('span',{class:'total-badge',id:`uno_total_${i}`,html:'(0)'});
+      th.appendChild(input); th.appendChild(total);
+      headerRow.appendChild(th);
+      nameInputs.push(input);
+
+      input.addEventListener('input',()=>{ renderTotals(); saveNow(); });
+    }
+
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+    table.appendChild(tbody);
     tableWrap.appendChild(table);
     appArea.appendChild(tableWrap);
 
-    // build header (names)
-    const thead = create('thead');
-    const headerRow = create('tr');
-    headerRow.appendChild(create('th',{class:'namecol',html:'Oyuncular <span class="muted">(isim ve toplam)</span>'}));
-    const nameInputs = [];
-    for(let i=0;i<playerCount;i++){
-      const th = create('th',{html:''});
-      const input = create('input',{class:'name',placeholder:'İsim',value:(saved && saved.names && saved.names[i])? saved.names[i]:Oyuncu ${i+1}});
-      const totalSpan = create('span',{class:'total-badge',id:uno_total_${i},html:'(0)'});
-      th.appendChild(input); th.appendChild(totalSpan);
-      headerRow.appendChild(th);
-      nameInputs.push(input);
-      // update on change to save and render
-      input.addEventListener('input', ()=> { renderTotals(); saveNow(); });
-    }
-    thead.appendChild(headerRow);
-    table.appendChild(thead);
-
-    // body for rounds
-    const tbody = create('tbody', {id:'unoBody'});
-    table.appendChild(tbody);
-
-    // initial number of rows
-    let rowCount = (saved && saved.rows)? saved.rows.length : 6;
-    if(rowCount < 1) rowCount = 6;
-
-    function addRow(prefilled){
-      const r = create('tr');
-      r.appendChild(create('td',{class:'namecol',html:El ${tbody.children.length + 1}}));
+    function addRow(prefilled=null){
+      const tr = create('tr');
+      tr.appendChild(create('td',{class:'namecol',html:`El ${tbody.children.length + 1}`}));
       for(let c=0;c<playerCount;c++){
-        const val = (prefilled && prefilled[c] !== undefined) ? prefilled[c] : '';
         const td = create('td');
-        const inp = create('input',{class:'score',value:val, placeholder:'0'});
-        inp.addEventListener('input', ()=> { renderTotals(); saveNow(); });
-        td.appendChild(inp); r.appendChild(td);
+        const inp = create('input',{class:'score',value:preFilled?.[c] ?? ''});
+        inp.addEventListener('input',()=>{ renderTotals(); saveNow(); });
+        td.appendChild(inp);
+        tr.appendChild(td);
       }
-      tbody.appendChild(r);
+      tbody.appendChild(tr);
       renderTotals();
     }
 
-    // populate saved rows otherwise default
-    if(saved && saved.rows){
-      saved.rows.forEach(r=> addRow(r));
+    if(saved?.rows){
+      saved.rows.forEach(r => addRow(r));
     } else {
-      for(let i=0;i<rowCount;i++) addRow();
+      for(let i=0;i<6;i++) addRow();
     }
 
-    // renderTotals
     function renderTotals(){
       const totals = new Array(playerCount).fill(0);
-      Array.from(tbody.children).forEach((tr,ri)=>{
-        Array.from(tr.children).slice(1).forEach((td,ci)=>{
-          const v = parseScoreInput(td.querySelector('input').value);
-          totals[ci] += v;
-        });
+      Array.from(tbody.children).forEach(tr=>{
+        const inputs = tr.querySelectorAll('input');
+        inputs.forEach((inp,ci)=> totals[ci] += parseScoreInput(inp.value));
       });
-      // update total spans and colorize
+
+      const max = Math.max(...totals);
+      const min = Math.min(...totals);
+
       for(let i=0;i<playerCount;i++){
-        const span = document.getElementById(uno_total_${i});
-        if(span) span.textContent = (${totals[i]});
-      }
-      // highlight best/worst: best = highest green, worst = lowest red
-      let max = Math.max(...totals);
-      let min = Math.min(...totals);
-      // clear
-      for(let i=0;i<playerCount;i++){
+        el(`#uno_total_${i}`).textContent = `(${totals[i]})`;
         const th = thead.children[0].children[i+1];
         th.classList.remove('best','worst');
-      }
-      // multiple winners possible: mark all equal to max/min
-      for(let i=0;i<playerCount;i++){
-        const th = thead.children[0].children[i+1];
         if(totals[i] === max) th.classList.add('best');
         if(totals[i] === min) th.classList.add('worst');
       }
-      // Show winner status
-      const statusLine = appArea.querySelector('.status') || create('div',{class:'status'});
-      statusLine.innerHTML = Toplamlar güncellendi. En yüksek: ${max}, En düşük: ${min}.;
-      if(!appArea.contains(statusLine)) appArea.appendChild(statusLine);
-
-      // show UNO goal reached
-      if(max >= 500){
-        statusLine.innerHTML += ` <strong style="color:green">Hedef 500'e ulaşan var — oyun sonlandırılabilir.</strong>`;
-      }
     }
 
-    // Save state
     function saveNow(){
-      const rows = Array.from(tbody.children).map(tr => Array.from(tr.children).slice(1).map(td => td.querySelector('input').value));
-      const names = nameInputs.map(i=> i.value);
-      saveState(stKey, {names, rows});
+      const rows = Array.from(tbody.children).map(tr =>
+        Array.from(tr.children).slice(1).map(td => td.querySelector('input').value)
+      );
+      saveState(stKey,{names:nameInputs.map(i=>i.value),rows});
     }
-
-    // addRow control
-    window.addRow = addRow;
-
-    // expose save
-    window.unoSaveNow = saveNow;
 
     renderTotals();
   }
 
-  // OKEY FLOW
+  /*
+    --------------------
+      OKEY BAŞLANGICI
+    --------------------
+  */
+
   el('#okeyBtn').addEventListener('click', ()=>{
-    // modal with Eşli / Tek
     const content = create('div',{},[
-      create('h3',{html:'OKEY — Mod Seçimi'}),
-      create('p',{class:'muted',html:'Eşli: 2 sütun (takımlar). Tek: 4 sütun (oyuncular). 11 el hazır.'}),
-      create('div',{class:'opt-row',style:'margin-top:12px'},[
-        create('button',{class:'btn',onClick: ()=> { clearModal(); buildOkey('esli'); }},['Eşli']),
-        create('button',{class:'ghost',onClick: ()=> { clearModal(); buildOkey('tek'); }},['Tek'])
+      create('h3',{html:'OKEY — Mod Seç'}),
+      create('p',{class:'muted',html:'Eşli = 2 kişi, Tek = 4 kişi. 11 el hazır.'}),
+      create('div',{class:'opt-row'},[
+        create('button',{class:'btn',onClick:()=>{clearModal(); buildOkey('esli');}},['Eşli']),
+        create('button',{class:'ghost',onClick:()=>{clearModal(); buildOkey('tek');}},['Tek'])
       ])
     ]);
     showModal(content);
@@ -311,106 +305,92 @@
     startArea.style.display = 'none';
     appArea.style.display = 'block';
     appArea.innerHTML = '';
-    const stKey = 'okey_v1_' + mode;
-    const saved = loadState(stKey) || null;
+
+    const stKey = 'okey_v1_'+mode;
+    const saved = loadState(stKey);
+
+    const colCount = (mode === 'esli') ? 2 : 4;
 
     const topbar = create('div',{class:'topbar'},[
       create('div',{},[
-        create('strong',{html:'OKEY — ' + (mode==='esli' ? 'Eşli' : 'Tek')}),
-        create('div',{class:'hint',html:'11 el hazır. "-" tek başına = -100. -400 gibi değerler de çalışır.'})
+        create('strong',{html:`OKEY — ${mode==='esli'? 'Eşli':'Tek'}`})
       ]),
       create('div',{},[
-        create('button',{class:'ghost smallbtn',onClick: ()=> { startArea.style.display='flex'; appArea.style.display='none'; }},['Geri']),
-        create('button',{class:'ghost smallbtn',onClick: ()=> { localStorage.removeItem('skorer:'+stKey); location.reload(); }},['Sıfırla'])
+        create('button',{class:'ghost smallbtn',onClick:()=>{startArea.style.display='flex'; appArea.style.display='none';}},['Geri']),
+        create('button',{class:'ghost smallbtn',onClick:()=>{localStorage.removeItem('skorer:'+stKey); location.reload();}},['Sıfırla'])
       ])
     ]);
     appArea.appendChild(topbar);
 
-    const colCount = (mode==='esli') ? 2 : 4;
     const tableWrap = create('div',{class:'table-wrap'});
-    const table = create('table',{id:'okeyTable'});
+    const table = create('table');
+    const thead = create('thead');
+    const tbody = create('tbody',{id:'okeyBody'});
+
+    const headerRow = create('tr');
+    headerRow.appendChild(create('th',{class:'namecol',html:'İsimler'}));
+
+    const nameInputs = [];
+
+    for(let i=0;i<colCount;i++){
+      const th = create('th');
+      const inp = create('input',{class:'name',value:(saved?.names?.[i] ?? `Oyuncu ${i+1}`)});
+      const total = create('span',{class:'total-badge',id:`okey_total_${i}`,html:'(0)'});
+      th.appendChild(inp); th.appendChild(total);
+      headerRow.appendChild(th);
+      nameInputs.push(inp);
+      inp.addEventListener('input',()=>{ renderTotals(); saveNow(); });
+    }
+
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+    table.appendChild(tbody);
     tableWrap.appendChild(table);
     appArea.appendChild(tableWrap);
 
-    const controls = create('div',{class:'controls'},[
-      create('button',{class:'btn',onClick: ()=> saveNow()},['Kaydet (local)']),
-      create('div',{class:'info',html:'Eksi puanlar için "-" veya "-100" biçiminde yazın.'})
-    ]);
-    appArea.appendChild(controls);
-
-    // header names
-    const thead = create('thead');
-    const headerRow = create('tr');
-    headerRow.appendChild(create('th',{class:'namecol',html:'İsimler <span class="muted">(isim ve toplam)</span>'}));
-    const nameInputs = [];
-    for(let i=0;i<colCount;i++){
-      const th = create('th',{html:''});
-      const input = create('input',{class:'name',placeholder:'İsim',value:(saved && saved.names && saved.names[i])? saved.names[i]: (mode==='esli' ? Takım ${i+1} : Oyuncu ${i+1})});
-      const totalSpan = create('span',{class:'total-badge',id:okey_total_${i},html:'(0)'});
-      th.appendChild(input); th.appendChild(totalSpan);
-      headerRow.appendChild(th);
-      nameInputs.push(input);
-      input.addEventListener('input', ()=> { renderTotals(); saveNow(); });
-    }
-    thead.appendChild(headerRow);
-    table.appendChild(thead);
-
-    // body with 11 rows
-    const tbody = create('tbody',{id:'okeyBody'});
     for(let r=0;r<11;r++){
       const tr = create('tr');
-      tr.appendChild(create('td',{class:'namecol',html:El ${r+1}}));
+      tr.appendChild(create('td',{class:'namecol',html:`El ${r+1}`}));
       for(let c=0;c<colCount;c++){
         const td = create('td');
-        const v = (saved && saved.rows && saved.rows[r] && saved.rows[r][c] !== undefined) ? saved.rows[r][c] : '';
-        const inp = create('input',{class:'score',value:v,placeholder:'0'});
-        inp.addEventListener('input', ()=> { renderTotals(); saveNow(); });
-        td.appendChild(inp); tr.appendChild(td);
+        const v = saved?.rows?.[r]?.[c] ?? '';
+        const inp = create('input',{class:'score',value:v});
+        inp.addEventListener('input',()=>{ renderTotals(); saveNow(); });
+        td.appendChild(inp);
+        tr.appendChild(td);
       }
       tbody.appendChild(tr);
     }
-    table.appendChild(tbody);
 
     function renderTotals(){
       const totals = new Array(colCount).fill(0);
-      Array.from(tbody.children).forEach((tr,ri)=>{
-        Array.from(tr.children).slice(1).forEach((td,ci)=>{
-          const v = parseScoreInput(td.querySelector('input').value);
-          totals[ci] += v;
-        });
+      Array.from(tbody.children).forEach(tr=>{
+        const inputs = tr.querySelectorAll('input');
+        inputs.forEach((inp,ci)=> totals[ci] += parseScoreInput(inp.value));
       });
-      // update spans
-      for(let i=0;i<colCount;i++){
-        const span = document.getElementById(okey_total_${i});
-        if(span) span.textContent = (${totals[i]});
-      }
-      // colorize: Okey reverse: lowest green (best), highest red (worst)
+
       const max = Math.max(...totals);
       const min = Math.min(...totals);
+
       for(let i=0;i<colCount;i++){
+        el(`#okey_total_${i}`).textContent = `(${totals[i]})`;
         const th = thead.children[0].children[i+1];
         th.classList.remove('best','worst');
-        if(totals[i] === min) th.classList.add('best'); // green
-        if(totals[i] === max) th.classList.add('worst'); // red
+        if(totals[i] === min) th.classList.add('best');
+        if(totals[i] === max) th.classList.add('worst');
       }
-      const statusLine = appArea.querySelector('.status') || create('div',{class:'status'});
-      statusLine.innerHTML = Toplamlar güncellendi. En düşük (iyi): ${min}, En yüksek (kötü): ${max}.;
-      if(!appArea.contains(statusLine)) appArea.appendChild(statusLine);
     }
 
     function saveNow(){
-      const rows = Array.from(tbody.children).map(tr => Array.from(tr.children).slice(1).map(td => td.querySelector('input').value));
-      const names = nameInputs.map(i=> i.value);
-      saveState(stKey, {names, rows});
+      const rows = Array.from(tbody.children).map(tr =>
+        Array.from(tr.children).slice(1).map(td => td.querySelector('input').value)
+      );
+      saveState(stKey,{names:nameInputs.map(i=>i.value),rows});
     }
 
     renderTotals();
-    // expose save
-    window.okeySaveNow = saveNow;
   }
 
-  // initial load: nothing
-  // Note: user can open start again by pressing Geri in topbar
 })();
 </script>
 </body>
